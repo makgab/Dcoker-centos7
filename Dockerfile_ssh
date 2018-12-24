@@ -1,0 +1,35 @@
+##################################################################
+# Dockerfile                                                     #
+##################################################################
+# docker images
+# docker ps -a
+# docker container list
+# docker build -t centos:7 .              # from "Dockerfile" fájlból
+# docker create -t -i -p 81:80/tcp -p 23:22/tcp --name centos7-srv --hostname centos7srv centos:7
+# docker run -i -p 80:80/tcp -p 443:443/tcp --name containername imagename
+# docker start centos7-srv
+# docker attach centos7-srv
+#
+# Backup, Restore:
+# docker save [OPTIONS] IMAGE [IMAGE...]
+# docker save busybox > busybox.tar
+# docker save --output busybox.tar busybox
+# docker save -o fedora-latest.tar fedora:latest
+# load back:
+# docker load < busybox.tar.gz
+# docker load --input fedora.tar
+#
+
+
+FROM centos:7
+
+MAINTAINER The CentOS Project <cloud-ops@centos.org>
+
+RUN yum -y install openssh-server
+RUN mkdir /var/run/sshd
+
+RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N '' 
+
+# EXPOSE 22
+# ENTRYPOINT ["/usr/sbin/sshd -D"]
+CMD /usr/sbin/sshd -D
