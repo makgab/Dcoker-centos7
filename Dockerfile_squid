@@ -1,0 +1,37 @@
+##################################################################
+# Dockerfile                                                     #
+##################################################################
+# docker images
+# docker ps -a
+# docker container list
+# docker build -t centos:7 .              # from "Dockerfile" fájlból
+# docker create -t -i -p 81:80/tcp -p 23:22/tcp --name centos7-srv --hostname centos7srv centos:7
+# docker run -i -p 80:80/tcp -p 443:443/tcp --name containername imagename
+# docker start centos7-srv
+# docker attach centos7-srv
+#
+# Backup, Restore:
+# docker save [OPTIONS] IMAGE [IMAGE...]
+# docker save busybox > busybox.tar
+# docker save --output busybox.tar busybox
+# docker save -o fedora-latest.tar fedora:latest
+# load back:
+# docker load < busybox.tar.gz
+# docker load --input fedora.tar
+#
+
+
+FROM centos:7
+
+MAINTAINER The CentOS Project <cloud-ops@centos.org>
+
+RUN yum -y install squid
+
+# port:
+EXPOSE 3128
+
+# copy
+# COPY squid.conf /etc/squid/squid.conf
+
+# ENTRYPOINT ["/usr/sbin/squid -NYC -d 1 -f /etc/squid/squid.conf"]
+CMD /usr/sbin/squid -NYC -d 1 -f /etc/squid/squid.conf
