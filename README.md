@@ -1,2 +1,3 @@
 # Docker-centos7
-Docker CentOS7 conatiner
+Docker CentOS7 conatiners
+
