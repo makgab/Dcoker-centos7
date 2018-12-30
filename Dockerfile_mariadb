@@ -1,0 +1,35 @@
+##################################################################
+# Dockerfile                                                     #
+##################################################################
+# docker images
+# docker ps -a
+# docker container list
+# docker build -t centos:7 .              # from "Dockerfile"
+# docker create -t -i -p 81:80/tcp -p 23:22/tcp --name centos7-srv --hostname centos7srv centos:7
+# docker run -i -p 80:80/tcp -p 443:443/tcp --name containername imagename
+# docker exec -ti centos7srv /bin/bash
+# docker start centos7-srv
+# docker attach centos7-srv
+#
+# Backup, Restore:
+# docker save [OPTIONS] IMAGE [IMAGE...]
+# docker save busybox > busybox.tar
+# docker save --output busybox.tar busybox
+# docker save -o fedora-latest.tar fedora:latest
+# load back:
+# docker load < busybox.tar.gz
+# docker load --input fedora.tar
+#
+
+
+FROM centos:7
+
+MAINTAINER The CentOS Project <cloud-ops@centos.org>
+
+RUN yum -y install mariadb-server && /usr/bin/mysql_install_db
+
+# port:
+EXPOSE 22 80 3306
+
+# ENTRYPOINT ["/usr/libexec/mysqld --basedir='/usr' -u root"]
+CMD /usr/libexec/mysqld --basedir='/usr' -u root
