@@ -4,7 +4,7 @@
 # docker images
 # docker ps -a
 # docker container list
-# docker build -t centos:7 .              # from "Dockerfile" fájlból
+# docker build -t centos:7 .              # from "Dockerfile"
 # docker create -t -i -p 81:80/tcp -p 23:22/tcp --name centos7-srv --hostname centos7srv centos:7
 # docker run -i -p 80:80/tcp -p 443:443/tcp --name containername imagename
 # docker exec -ti centos7srv /bin/bash
