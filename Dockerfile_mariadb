@@ -24,7 +24,7 @@
 
 FROM centos:7
 
-MAINTAINER The CentOS Project <cloud-ops@centos.org>
+MAINTAINER Gabor <makgab@gmail.com>
 
 RUN yum -y install mariadb-server && /usr/bin/mysql_install_db
 
